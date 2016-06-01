@@ -35,8 +35,8 @@
 
 #### Summary
 
-*Version 1.07*  
-*28 April 2014*  
+*Version 1.08*  
+*19 May 2014*  
 
 The Genome Variation Format (GVF) is a very simple file format for describing sequence_alteration features at nucleotide resolution relative to a reference genome. The GVF format was published in *Reese et al., Genome Biol., 2010;11(8):R88* [A standard variation file format for human genome sequences](http://genomebiology.biomedcentral.com/articles/10.1186/gb-2010-11-8-r88). We would like to acknowledge the contributing groups for their support.
 
@@ -88,7 +88,7 @@ See the [GFF3 Specification](/gff3.md) for more details about GFF3.
                         <li>Contain meta-data.</li>
                         <li>
                             Only this one is required:
-                            <pre>##gvf-version 1.07</pre>
+                            <pre>##gvf-version 1.08</pre>
                         </li>
                     </ul>
                 </li>
@@ -100,7 +100,7 @@ See the [GFF3 Specification](/gff3.md) for more details about GFF3.
                             <ul>
                                 <li>seqid: The chromosome or contig on which the sequence_alteration is located (text).</li>
                                 <li>source: The source (i.e. an algorithm or database) of the sequence_alteration (text.)</li>
-                                <li>type: A SO term describing the type of sequence_alteration (child term of <a href="http://www.sequenceontology.org/browser/current_release/term/SO:0001059">SO sequence_alteration</a>) or a <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0000730">gap</a>.</li>
+                                <li>type: A SO term describing the type of sequence_alteration (child term of <a href="http://www.sequenceontology.org/browser/current_release/term/SO:0001059">SO sequence_alteration</a>), no_variation (<a href="http://www.sequenceontology.org/browser/current_release/term/SO:0002073">SO no variation</a>), or a <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0000730">gap</a>.</li>
                                 <li>start: A 1-based integer for the begining of the sequence_alteration locus on the plus strand (integer).</li>
                                 <li>end: A 1-based integer of the end of the sequence_alteration on plus strand (integer).</li>
                                 <li>score: A (<a href="http://en.wikipedia.org/wiki/Phred_quality_score">Phred scaled</a>) probability that the sequence_alteration call is incorrect (real number).</li>
@@ -192,7 +192,7 @@ See the [GFF3 Specification](/gff3.md) for more details about GFF3.
             <p>A few lines of single nucleotide variants (SNV) are shown below as an example of a very simple GVF file. Scroll right to see the complete lines.</p>
 
             <pre>
-##gvf-version 1.07
+##gvf-version 1.08
 ##genome-build NCBI B36.3
 ##sequence-region chr16 1 88827254
 
@@ -235,6 +235,7 @@ The dbVar database at NCBI is providing GVF files for their structural variant d
 
 -   ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/by_assembly/NCBI36/gvf/
 -   ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/by_assembly/GRCh37/gvf/
+-   ftp://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/by_assembly/GRCh38/gvf/
 
 #### Column Descriptions
 
@@ -248,7 +249,7 @@ Sequence alterations are described in a GVF file with 9 tab-delimited columns. T
     <dd>The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this feature. Typically this is the name of a piece of software, such as "MAQ" or a database name, such as "dbSNP". Although the value of source is not constrained, the ##source-method pragma may be used to describe the source in more detail.</dd>
 
     <dt>Column 3: "type"</dt>
-    <dd>The type of the feature. This is constrained to be either: (a) the SO term sequence_alteration <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0001059">SO:0001059</a>, (b) a child term of sequence_alteration, (c) the SO term gap <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0000730">SO:0000730</a>, or (d) the SO accession number for any of the previous terms. The gap feature, while not a sequence_alteration, provides a way to annotate gaps in the individuals genome assembly where sequence_alteration information is unknown (low-coverage, no-call regions).</dd>
+    <dd>The type of the feature. This is constrained to be either: (a) the SO term sequence_alteration <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0001059">SO:0001059</a>, (b) a child term of sequence_alteration, (c) the SO term no_variation <a href="http://www.sequenceontology.org/browser/current_release/term/SO:0002073">SO:0002073</a>, (d) the SO term gap <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0000730">SO:0000730</a>, or (e) the SO accession number for any of the previous terms. The gap feature, while not a sequence_alteration, provides a way to annotate gaps in the individuals genome assembly where sequence_alteration information is unknown (low-coverage, no-call regions).</dd>
 
     <dt>Columns 4 & 5: "start" and "end"</dt>
     <dd>The start and end of the feature, in 1-based integer coordinates, relative to the landmark given in column 1. Start is always less than or equal to end. For features that cross the origin of a circular feature (e.g. most bacterial genomes, plasmids, and some viral genomes), the requirement for start to be less than or equal to end is satisfied by making end = the position of the end + the length of the landmark feature. For zero-length features, such as an insertion, start equals end and the implied site is to the three-prime of the indicated base in the direction of the landmark.</dd>
@@ -964,11 +965,11 @@ Structured pragmas have additional structure that allow more complex data to be 
         <ul>
             <li><strong>Type:</strong> Simple</li>
             <li><strong>Description:</strong> The version of the GVF specification that this file conforms to. This is the only required pragma for GVF and is the first (or second) line of the file. Note that some GFF3 parsers will require a ##gff-version pragma at the top of the file as required by the GFF3 spec. GVF specific parsers should thus tolerate this pragma as the first line of the file and the ##gvf-version pragma as the second line.</li>
-            <li><strong>Supported Values:</strong> Any valid GVF specification value (e.g. 1.07).</li>
+            <li><strong>Supported Values:</strong> Any valid GVF specification value (e.g. 1.08).</li>
             <li>
                 <strong>Example:</strong>
 
-                <pre>##gvf-version 1.07</pre>
+                <pre>##gvf-version 1.08</pre>
             </li>
         </ul>
     </dd>
@@ -1670,7 +1671,7 @@ While the GVF format was designed primarily for personal genomics - containing r
 4.  Other attributes such as Variant_reads, and Phased may also contain comma separated lists which give information for each individual in a similar fashion to that described above for Genotype. See those attribute descriptions for more details.
 
 ```
-##gvf-version 1.07
+##gvf-version 1.08
 ##feature-ontology http://www.sequenceontology.org/resources/obo_files/current_release.obo
 ##multi-individual NA19240,NA18507,NA12878,NA19238
 ##genome-build NCBI B36.3
@@ -1745,7 +1746,7 @@ We would like to thank the NHGRI for funding this work (R44HG2991, R44HG3667). W
 -   Steve Chervitz
 -   Deanna Church
 -   Fiona Cunningham
--   Tim Heffron
+-   Tim Hefferon
 -   Hao Hu
 -   Chad Huff
 -   Edward Kirluata
@@ -1765,6 +1766,8 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
     <dd>
         <ul>
             <li>Converted from HTML to Markdown.</li>
+            <li>Added SO:0002073 no_variation as allowable under Column 3: "type".</li>
+            <li>Updated references "##gvf-version 1.07" to "##gvf-version 1.08" throughout.</li>
         </ul>
     </dd>
 
