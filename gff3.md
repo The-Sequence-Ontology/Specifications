@@ -4,7 +4,7 @@
 
 Author: Lincoln Stein  
 Date: 26 February 2013  
-Version: 1.22  
+Version: 1.23  
 
 Although there are many richer ways of representing genomic features via XML and in relational database schemas, the stubborn persistence of a variety of ad-hoc tab-delimited flat file formats declares the bioinformatics community's need for a simple format that can be modified with a text editor and processed with shell tools like grep. The GFF format, although widely used, has fragmented into multiple incompatible dialects. When asked why they have modified the published Sanger specification, bioinformaticists frequently answer that the format was insufficient for their needs, and they needed to extend it. The proposed GFF3 format addresses the most common extensions to GFF, while preserving backward compatibility with previous formats. The new format:
 
@@ -48,7 +48,7 @@ Undefined fields are replaced with the "." character, as described in the origin
     <dd>The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this feature. Typically this is the name of a piece of software, such as "Genescan" or a database name, such as "Genbank." In effect, the source is used to extend the feature ontology by adding a qualifier to the type creating a new composite type that is a subclass of the type in the type column.</dd>
 
     <dt>Column 3: "type"</dt>
-    <dd>The type of the feature (previously called the "method"). This is constrained to be either: (a) a term from the "lite" version of the Sequence Ontology - SOFA, a term from the full Sequence Ontology - it must be an is_a child of sequence_feature (SO:0000110) or (c) a SOFA or SO accession number. The latter alternative is distinguished using the syntax SO:000000.</dd>
+    <dd>The type of the feature (previously called the "method"). This is constrained to be either a term from the Sequence Ontology or an SO accession number. The latter alternative is distinguished using the syntax SO:000000. In either case, it must be sequence_feature (SO:0000110) or an is_a child of it.</dd>
 
     <dt>Columns 4 & 5: "start" and "end"</dt>
     <dd>
@@ -814,6 +814,13 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
 #### Change Log
 
 <dl>
+    <dt>1.23 Fri 3 Oct 2016</dt>
+    <dd>
+        <ul>
+            <li>Added SO:0000110 sequence_feature as allowable under Column 3: "type".</li>
+        </ul>
+    </dd>
+
     <dt>1.22 Mon 2 May 2016</dt>
     <dd>
         <ul>
