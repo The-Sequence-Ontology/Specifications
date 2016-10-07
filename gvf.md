@@ -1,4 +1,4 @@
-### Genome Variation Format 1.08
+### Genome Variation Format 1.10
 
 #### Table of Contents
 
@@ -35,7 +35,7 @@
 
 #### Summary
 
-*Version 1.08*  
+*Version 1.10*  
 *19 May 2014*  
 
 The Genome Variation Format (GVF) is a very simple file format for describing sequence_alteration features at nucleotide resolution relative to a reference genome. The GVF format was published in *Reese et al., Genome Biol., 2010;11(8):R88* [A standard variation file format for human genome sequences](http://genomebiology.biomedcentral.com/articles/10.1186/gb-2010-11-8-r88). We would like to acknowledge the contributing groups for their support.
@@ -88,7 +88,7 @@ See the [GFF3 Specification](/gff3.md) for more details about GFF3.
                         <li>Contain meta-data.</li>
                         <li>
                             Only this one is required:
-                            <pre>##gvf-version 1.08</pre>
+                            <pre>##gvf-version 1.10</pre>
                         </li>
                     </ul>
                 </li>
@@ -192,7 +192,7 @@ See the [GFF3 Specification](/gff3.md) for more details about GFF3.
             <p>A few lines of single nucleotide variants (SNV) are shown below as an example of a very simple GVF file. Scroll right to see the complete lines.</p>
 
             <pre>
-##gvf-version 1.08
+##gvf-version 1.10
 ##genome-build NCBI B36.3
 ##sequence-region chr16 1 88827254
 
@@ -965,11 +965,11 @@ Structured pragmas have additional structure that allow more complex data to be 
         <ul>
             <li><strong>Type:</strong> Simple</li>
             <li><strong>Description:</strong> The version of the GVF specification that this file conforms to. This is the only required pragma for GVF and is the first (or second) line of the file. Note that some GFF3 parsers will require a ##gff-version pragma at the top of the file as required by the GFF3 spec. GVF specific parsers should thus tolerate this pragma as the first line of the file and the ##gvf-version pragma as the second line.</li>
-            <li><strong>Supported Values:</strong> Any valid GVF specification value (e.g. 1.08).</li>
+            <li><strong>Supported Values:</strong> Any valid GVF specification value (e.g. 1.10).</li>
             <li>
                 <strong>Example:</strong>
 
-                <pre>##gvf-version 1.08</pre>
+                <pre>##gvf-version 1.10</pre>
             </li>
         </ul>
     </dd>
@@ -1671,7 +1671,7 @@ While the GVF format was designed primarily for personal genomics - containing r
 4.  Other attributes such as Variant_reads, and Phased may also contain comma separated lists which give information for each individual in a similar fashion to that described above for Genotype. See those attribute descriptions for more details.
 
 ```
-##gvf-version 1.08
+##gvf-version 1.10
 ##feature-ontology http://www.sequenceontology.org/resources/obo_files/current_release.obo
 ##multi-individual NA19240,NA18507,NA12878,NA19238
 ##genome-build NCBI B36.3
@@ -1762,12 +1762,25 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
 #### Change Log
 
 <dl>
+    <dt>1.10 Fri 7 Oct 2016</dt>
+    <dd>
+        <ul>
+            <li>Updated "##gvf-version 1.08" to "##gvf-version 1.10" throughout.</li>
+        </ul>
+    </dd>
+
+    <dt>1.09 Thu 19 May 2016</dt>
+    <dd>
+        <ul>
+            <li>Added SO:0002073 no_variation as allowable under Column 3: "type".</li>
+            <li>Updated references "##gvf-version 1.07" to "##gvf-version 1.08" throughout.</li>
+        </ul>
+    </dd>
+
     <dt>1.08 Mon 2 May 2016</dt>
     <dd>
         <ul>
             <li>Converted from HTML to Markdown.</li>
-            <li>Added SO:0002073 no_variation as allowable under Column 3: "type".</li>
-            <li>Updated references "##gvf-version 1.07" to "##gvf-version 1.08" throughout.</li>
         </ul>
     </dd>
 
