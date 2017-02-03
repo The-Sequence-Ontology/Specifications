@@ -100,7 +100,7 @@ See the [GFF3 Specification](/gff3.md) for more details about GFF3.
                             <ul>
                                 <li>seqid: The chromosome or contig on which the sequence_alteration is located (text).</li>
                                 <li>source: The source (i.e. an algorithm or database) of the sequence_alteration (text.)</li>
-                                <li>type: An SO term describing the type of sequence_alteration (child term of <a href="http://www.sequenceontology.org/browser/current_release/term/SO:0001059">SO sequence_alteration</a>), no_variation (<a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0002073">SO no variation</a>), or a <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0000730">gap</a>.</li>
+                                <li>type: An SO term describing the type of sequence_alteration (child term of <a href="http://www.sequenceontology.org/browser/current_release/term/SO:0001059">SO sequence_alteration</a>), no_sequence_alteration (<a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0002073">SO no sequence alteration</a>), or a <a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0000730">gap</a>.</li>
                                 <li>start: A 1-based integer for the begining of the sequence_alteration locus on the plus strand (integer).</li>
                                 <li>end: A 1-based integer of the end of the sequence_alteration on plus strand (integer).</li>
                                 <li>score: A (<a href="http://en.wikipedia.org/wiki/Phred_quality_score">Phred scaled</a>) probability that the sequence_alteration call is incorrect (real number).</li>
