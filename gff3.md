@@ -43,84 +43,57 @@ Undefined fields are replaced with the "." character, as described in the origin
 <dl>
     <dt>Column 1: "seqid"</dt>
     <dd>The ID of the landmark used to establish the coordinate system for the current feature. IDs may contain any characters, but must escape any characters not in the set [a-zA-Z0-9.:^*$@!+_?-|]. In particular, IDs may not contain unescaped whitespace and must not begin with an unescaped "&gt;".</dd>
-
     <dt>Column 2: "source"</dt>
     <dd>The source is a free text qualifier intended to describe the algorithm or operating procedure that generated this feature. Typically this is the name of a piece of software, such as "Genescan" or a database name, such as "Genbank." In effect, the source is used to extend the feature ontology by adding a qualifier to the type creating a new composite type that is a subclass of the type in the type column.</dd>
-
     <dt>Column 3: "type"</dt>
     <dd>The type of the feature (previously called the "method"). This is constrained to be either a term from the Sequence Ontology or an SO accession number. The latter alternative is distinguished using the syntax SO:000000. In either case, it must be sequence_feature (SO:0000110) or an is_a child of it.</dd>
-
     <dt>Columns 4 & 5: "start" and "end"</dt>
     <dd>
         <p>The start and end coordinates of the feature are given in positive 1-based integer coordinates, relative to the landmark given in column one. Start is always less than or equal to end. For features that cross the origin of a circular feature (e.g. most bacterial genomes, plasmids, and some viral genomes), the requirement for start to be less than or equal to end is satisfied by making end = the position of the end + the length of the landmark feature.</p>
-
         <p>For zero-length features, such as insertion sites, start equals end and the implied site is to the right of the indicated base in the direction of the landmark.</p>
     </dd>
-
     <dt>Column 6: "score"</dt>
     <dd>The score of the feature, a floating point number. As in earlier versions of the format, the semantics of the score are ill-defined. It is strongly recommended that E-values be used for sequence similarity features, and that P-values be used for ab initio gene prediction features.</dd>
-
     <dt>Column 7: "strand"</dt>
     <dd>The strand of the feature. + for positive strand (relative to the landmark), - for minus strand, and . for features that are not stranded. In addition, ? can be used for features whose strandedness is relevant, but unknown.</dd>
-
     <dt>Column 8: "phase"</dt>
     <dd>
         <p>For features of type "CDS", the phase indicates where the feature begins with reference to the reading frame. The phase is one of the integers 0, 1, or 2, indicating the number of bases that should be removed from the beginning of this feature to reach the first base of the next codon. In other words, a phase of "0" indicates that the next codon begins at the first base of the region described by the current line, a phase of "1" indicates that the next codon begins at the second base of this region, and a phase of "2" indicates that the codon begins at the third base of this region. This is NOT to be confused with the frame, which is simply start modulo 3.</p>
-
         <p>For forward strand features, phase is counted from the start field. For reverse strand features, phase is counted from the end field.</p>
-
         <p>The phase is REQUIRED for all CDS features.</p>
     </dd>
-
     <dt>Column 9: "attributes"</dt>
     <dd>
         <p>A list of feature attributes in the format tag=value. Multiple tag=value pairs are separated by semicolons. URL escaping rules are used for tags or values containing the following characters: ",=;". Spaces are allowed in this field, but tabs must be replaced with the %09 URL escape. Attribute values do not need to be and should not be quoted. The quotes should be included as part of the value by parsers and not stripped.</p>
-
         <p>These tags have predefined meanings:</p>
-
         <dl>
             <dt>ID</dt>
             <dd>Indicates the ID of the feature. IDs for each feature must be unique within the scope of the GFF file. In the case of discontinuous features (i.e. a single feature that exists over multiple genomic locations) the same ID may appear on multiple lines. All lines that share an ID collectively represent a single feature.</dd>
-
             <dt>Name</dt>
             <dd>Display name for the feature. This is the name to be displayed to the user. Unlike IDs, there is no requirement that the Name be unique within the file.</dd>
-
             <dt>Alias</dt>
             <dd>A secondary name for the feature. It is suggested that this tag be used whenever a secondary identifier for the feature is needed, such as locus names and accession numbers. Unlike ID, there is no requirement that Alias be unique within the file.</dd>
-
             <dt>Parent</dt>
             <dd>Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, an so forth. A feature may have multiple parents. Parent can <em>only</em> be used to indicate a partof relationship.</dd>
-
             <dt>Target</dt>
             <dd>Indicates the target of a nucleotide-to-nucleotide or protein-to-nucleotide alignment. The format of the value is "target_id start end [strand]", where strand is optional and may be "+" or "-". If the target_id contains spaces, they must be escaped as hex escape %20.</dd>
-
             <dt>Gap</dt>
             <dd>The alignment of the feature to the target if the two are not collinear (e.g. contain gaps). The alignment format is taken from the CIGAR format described in the <a href="http://cvs.sanger.ac.uk/cgi-bin/viewvc.cgi/exonerate/?root=ensembl">Exonerate documentation</a>. See "THE GAP ATTRIBUTE" for a description of this format.</dd>
-
             <dt>Derives_from</dt>
             <dd>Used to disambiguate the relationship between one feature and another when the relationship is a temporal one rather than a purely structural "part of" one. This is needed for polycistronic genes. See "PATHOLOGICAL CASES" for further discussion.</dd>
-
             <dt>Note</dt>
             <dd>A free text note.</dd>
-
             <dt>Dbxref</dt>
             <dd>A database cross reference. See the section "Ontology Associations and Db Cross References" for details on the format.</dd>
-
             <dt>Ontology_term</dt>
             <dd>A cross reference to an ontology term. See the section "Ontology Associations and Db Cross References" for details.</dd>
-
             <dt>Is_circular</dt>
             <dd>A flag to indicate whether a feature is circular. See extended discussion below.</dd>
         </dl>
-
         <p>Multiple attributes of the same type are indicated by separating the values with the comma "," character, as in:</p>
-
         <pre>Parent=AF2312,AB2812,abc-3</pre>
-
         <p>In addition to Parent, the Alias, Note, Dbxref and Ontology_term attributes can have multiple values.</p>
-
         <p>Note that attribute names are case sensitive. "Parent" is not the same as "parent".</p>
-
         <p>All attributes that begin with an uppercase letter are reserved for later use. Attributes that begin with a lowercase letter can be used freely by applications.</p>
     </dd>
 </dl>
@@ -209,7 +182,6 @@ Note that several of the features, including the gene, its mRNAs and the CDSs, a
     <dt>NOTE 1<dd>
     <dd>
         <p>SO or SOFA IDs: If using the SO (or SOFA) IDs rather than the short names1 ("mRNA" etc), use the following mappings:</p>
-
         <table>
             <tr>
                 <td>gene</td>
@@ -228,9 +200,7 @@ Note that several of the features, including the gene, its mRNAs and the CDSs, a
                 <td>SO:0000316</td>
             </tr>
         </table>
-
         <p>Other mRNA parts that you might wish to use are:</p>
-
         <table>
             <tr>
                 <td>intron</td>
@@ -254,16 +224,12 @@ Note that several of the features, including the gene, its mRNAs and the CDSs, a
             </tr>
         </table>
     </dd>
-
     <dt>NOTE 2</dt>
     <dd>"Orphan" exons CDSs, and other features. Ab initio gene prediction programs call hypothetical exons and CDS's that are attached to the genomic sequence and not necessarily to a known transcript. To handle these features, you may either (1) create a placeholder mRNA and use it as the parent for the exon and CDS subfeatures; or (2) attach the exons and CDSs directly to the gene. This is allowed by SO because of the transitive nature of the part_of relationship.</dd>
-
     <dt>NOTE 3</dt>
     <dd>UTRs, splice sites and translational start and stop sites. These are implied by the combination of exon and CDS and do not need to be explicitly annotated as part of the canonical gene. In the case of annotating predicted splice or translational start/stop sites independently of a particular gene, it is suggested that they be attached directly to the genomic sequence and not to a gene or a subpart of a gene.</dd>
-
     <dt>NOTE 4</dt>
     <dd>CDS features MUST have have a defined phase field. Otherwise it is not possible to infer the correct polypeptides corresponding to partially annotated genes.</dd>
-
     <dt>NOTE 5</dt>
     <dd>The START and STOP codons are included in the CDS. That is, if the locations of the start and stop codons are known, the first three base pairs of the CDS should correspond to the start codon and the last three correspond the stop codon.</dd>
 </dl>
@@ -492,10 +458,8 @@ Here are some common examples:
 <dl>
     <dt>a dbxref to an EMBL sequence accession number:</dt>
     <dd>Dbxref="EMBL:AA816246"</dd>
-
     <dt>a dbxref to an NCBI gi number:</dt>
     <dd>Dbxref="NCBI_gi:10727410"</dd>
-
     <dt>an Ontology_term referring to a GO association</dt>
     <dd>Ontology_term="GO:0046703"</dd>
 </dl>
@@ -507,14 +471,11 @@ Comment lines begin with the '#' symbol. End-of-line comments (comments preceede
 <dl>
     <dt>##gff-version 3.2.1</dt>
     <dd>The GFF version follows the format of 3.#.# in this spec. This directive must be present, must be the topmost line of the file. The version number always begins with 3, the second and third numbers are optional and indicate a major revision and a minor revision respectively.</dd>
-
     <dt>##sequence-region seqid start end</dt>
     <dd>The sequence segment referred to by this file, in the format "seqid start end". This element is optional, but strongly encouraged because it allows parsers to perform bounds checking on features. There may be multiple ##sequence-region directives, each corresponding to one of the reference sequences referred to in the body of the file, however only one ##sequence-region directive may be given for any given seqid. While a ##sequence-region pragma is not required for any or all landmark features when one is given all features on that landmark feature (having that seqid) must be contained within the range defined by that ##sequence-region diretive. An exception to this rule is allowed when a landmark feature is marked with the Is_circular attribute. In that case the features contained on that landmark may extend their coordiantes beyond the boundary as described above.</dd>
-
     <dt>##feature-ontology URI</dt>
     <dd>
         <p>This directive indicates that the GFF3 file uses the ontology of feature types located at the indicated URI or URL. Multiple URIs may be added, in which case they are merged (or raise an exception if they cannot be merged). The URIs for the released sequence ontologies are:</p>
-
         <ul>
             <li>
                 Release 1: 5/12/2004<br/>
@@ -526,7 +487,6 @@ Comment lines begin with the '#' symbol. End-of-line comments (comments preceede
             </li>
             <li>
                 Release 2.4.3 06/01/2010
-
                 <ul>
                     <li>
                         SO:<br/>
@@ -537,57 +497,41 @@ Comment lines begin with the '#' symbol. End-of-line comments (comments preceede
                         http://song.cvs.sourceforge.net/viewvc/*checkout*/song/ontology/sofa.obo?revision=1.217
                     </li>
                 </ul>
-
                 <p>Releases occur every two months for SO and SOFA.</p>
-
                 <p>The repository for SO releases is here: http://sourceforge.net/projects/song/files/Sequence%20Ontology/</p>
-
                 <p>The repository for SOFA releases is here: http://sourceforge.net/projects/song/files/SO_Feature_Annotation/</p>
-
                 <p>This directive may occur several times per file. If no feature ontology is specified, then the most recent release of the Sequence Ontology is assumed.</p>
-
                 <p>If multiple directives are given and a feature type is matched by multiple ontologies, the matching ontology included by the directive highest in the file wins the reference. The Sequence Ontology itself is always referenced last.</p>
-
                 <p>The content referenced by URI must be in OBO or DAG-Edit format.</p>
             </li>
         </ul>
     </dd>
-
     <dt>##attribute-ontology URI</dt>
     <dd>This directive indicates that the GFF3 uses the ontology of attribute names located at the indicated URI or URL. This directive may appear multiple times to load multiple URIs, in which case they are merged (or raise an exception if merging is not possible). Currently no formal attribute ontologies exist, so this attribute is for future extension.</dd>
-
     <dt>##source-ontology URI</dt>
     <dd>This directive indicates that the GFF3 uses the ontology of source names located at the indicated URI or URL. This directive may appear multiple times to load multiple URIs, in which case they are merged (or raise an exception if merging is not possible). Currently no formal source ontologies exist, so this attribute is for future extension.</dd>
-
     <dt>##species NCBI_Taxonomy_URI</dt>
     <dd>
         This directive indicates the species that the annotations apply to. The preferred format is a NCBI URL that points to the relevant species page in either of the following formats:
-
         <ul>
             <li>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=6239</li>
             <li>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=Caenorhabditis+elegans</li>
         </ul>
     </dd>
-
     <dt>##genome-build source buildName</dt>
     <dd>
         <p>The genome assembly build name used for the coordinates given in the file. Please specify the source of the assembly as well as its name. Examples (the parentheses are comments):</p>
-
         <pre>
 ##genome-build NCBI B36           (human)
 ##genome-build WormBase ws110     (worm)
 ##genome-build FlyBase r4.1       (drosophila)</pre>
     </dd>
-
     <dt>###</dt>
     <dd>This directive (three # signs in a row) indicates that all forward references to feature IDs that have been seen to this point have been resolved. After seeing this directive, a program that is processing the file serially can close off any open objects that it has created and return them, thereby allowing iterative access to the file. Otherwise, software cannot know that a feature has been fully populated by its subfeatures until the end of the file has been reached. It is recommended that complex features, such as the canonical gene, be terminated with the ### notation.</dd>
-
     <dt>##FASTA</dt>
     <dd>
         <p>This notation indicates that the annotation portion of the file is at an end and that the remainder of the file contains one or more sequences (nucleotide or protein) in FASTA format. This allows features and sequences to be bundled together. All FASTA sequences included in the file must be included together at the end of the file and may not be interspersed with the features lines. Once a ##FASTA section is encountered no other content beyond valid FASTA sequence is allowed.</p>
-
         <p>Example:</p>
-
         <pre>
 ##gff-version 3.2.1
 ##sequence-region ctg123 1 1497228
@@ -623,7 +567,6 @@ aggctcagcgctcgatttaactaaaagtggaaagctggacgaaagtcata
 tcgctgtgattcttcgcgaaattttgaaaggtctcgagtatctgcatagt
 gaaagaaaaatccacagagatattaaaggagccaacgttttgttggaccg
 tcaaacagcggctgtaaaaatttgtgattatggttaaagg</pre>
-
         <p>For backward-compatibility with the GFF version output by the Artemis tool, a GFF line that begins with the character &gt; creates an implied ##FASTA directive.</p>
     </dd>
 </dl>
@@ -636,37 +579,26 @@ The following section discusses how to represent "pathological" cases that arise
     <dt>Single exon genes</dt>
     <dd>
         <p>This is the case in which a single unspliced transcript encodes a single CDS.</p>
-
         <pre>-----&gt;XXXXXXX*------&gt;</pre>
-
         <p>The preferred representation is to create a gene, a transcript, an exon and a CDS:</p>
-
         <pre>
 chrX  . gene XXXX YYYY  .  +  . ID=gene01;name=resA
 chrX  . mRNA XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . exon XXXX YYYY  .  +  . Parent=tran01
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01</pre>
-
         <p>Some groups will find this redundant. A valid alternative is to omit the exon feature:</p>
-
         <pre>
 chrX  . gene XXXX YYYY  .  +  . ID=gene01;name=resA
 chrX  . mRNA XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01</pre>
-
         <p>It is not recommended to parent the CDS directly onto the gene, because this will make it impossible to determine the UTRs (since the gene may validly include untranscribed regulatory regions).</p>
-
         <p>Also note that mixing the two styles, as in the case of an organism with both spliced and unspliced transcripts, is liable to lead to the confusion of people working with the GFF3 file.</p>
     </dd>
-
     <dt>Polycistronic transcripts</dt>
     <dd>
         <p>This is the case in which a single (possibly spliced) transcript encodes multiple open reading frames that generate independent protein products.</p>
-
         <pre>-----&gt;XXXXXXX*--&gt;BBBBBB*---&gt;ZZZZ*--&gt;AAAAAA*-----</pre>
-
         <p>Since the single transcript corresponds to multiple genes that can be identified by genetic analysis, the recommended solution here is to create four "gene" objects and make them the parent for a single transcript. The transcript will contain a single exon (in the unspliced case) and four separate CDSs:</p>
-
         <pre>
 chrX  . gene XXXX YYYY  .  +  . ID=gene01;name=resA
 chrX  . gene XXXX YYYY  .  +  . ID=gene02;name=resB
@@ -678,21 +610,15 @@ chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene01
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene02
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene03
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
-
         <p>To disambiguate the relationship between which genes encode which CDSs, you may use the Derives_from relationship.</p>
     </dd>
-
     <dt>Gene containing an intein</dt>
     <dd>
         <p>An intein occurs when a portion of the protein is spliced out and the two polypeptide fragments are rejoined to become a functional protein. The portion that is spliced out is called the "intein," and it may itself have intrinsic molecular activity:</p>
-
         <pre>
 -----&gt;XXXXXXyyyyyyyyyyXXXXXXX*-------
-
 (yyyyyy is the intein)</pre>
-
         <p>The preferred representation is to create one gene, one transcript, one exon, and one CDS. The CDS produces a pre-polypeptide using the "Derives_from" tag, and this polypeptide in turn gives rise to two mature_polypeptides, one each for the intein and the flanking protein:</p>
-
         <pre>
 chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=resA
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01
@@ -702,11 +628,8 @@ chrX  . polypeptide        XXXX YYYY  .  +  . ID=poly01;Derives_from=cds01
 chrX  . mature_polypeptide XXXX YYYY  .  +  . ID=poly02;Parent=poly01
 chrX  . mature_polypeptide XXXX YYYY  .  +  . ID=poly02;Parent=poly01
 chrX  . intein             XXXX YYYY  .  +  . ID=poly03;Parent=poly01</pre>
-
         <p>Because the flanking mature_polypeptide has discontinuous coordinates on the genome, it appears twice with the same ID.</p>
-
         <p>If the intein is immediately degraded, you may not wish to annotate it explicitly, and its line would be deleted from the example. However, if it has molecular activity, it may correspond to a gene, in which case:</p>
-
         <pre>
 chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=resA
 chrX  . gene               XXXX YYYY  .  +  . ID=gene02;name=inteinA
@@ -717,30 +640,23 @@ chrX  . polypeptide        XXXX YYYY  .  +  . ID=poly01;Derives_from=cds01
 chrX  . mature_polypeptide XXXX YYYY  .  +  . ID=poly02;Parent=poly01;Derives_from=gene01
 chrX  . mature_polypeptide XXXX YYYY  .  +  . ID=poly02;Parent=poly01;Derives_from=gene01
 chrX  . intein             XXXX YYYY  .  +  . ID=poly03;Parent=poly01;Derives_from=gene02</pre>
-
         <p>The term "polypeptide" is part of SO. The terms "mature_polypeptide" and "intein" are slated to be added in a pending release.</p>
     </dd>
-
     <dt>Trans-spliced transcript</dt>
     <dd>
         <p>This occurs when two genes contribute to a processed transcript via a trans-splicing reaction:</p>
-
         <pre>
 spliced
 leader
 =======&gt;-----&gt;XXXXXXX*------&gt;</pre>
-
         <p>The simplest way to represent this is to show the mRNA as being split across two discontinuous genomic locations:</p>
-
         <pre>
 chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=my_gene
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . exon               XXXX YYYY  .  +  . Parent=tran01
 chrX  . CDS                XXXX YYYY  .  +  . ID=cds01;Parent=tran01</pre>
-
         <p>However, this does not indicate which part of the transcript comes from the spliced leader. A preferred representation explicitly adds features for the spliced leader gene, the primary_transcript and the spliced_leader_RNA:</p>
-
         <pre>
 chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=my_gene
 chrX  . gene               XXXX YYYY  .  +  . ID=gene02;name=leader_gene
@@ -749,46 +665,34 @@ chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01,gene02
 chrX  . primary_transcript XXXX YYYY  .  +  . ID=pt01;Parent=tran01;Derives_from=gene01
 chrX  . spliced_leader_RNA XXXX YYYY  .  +  . ID=sl01;Parent=tran01;Derives_from=gene02
 chrX  . exon               XXXX YYYY  .  +  . Parent=tran01 chrX . CDS XXXX YYYY . + . ID=cds01;Parent=tran01</pre>
-
         <p>As shown here, the mRNA derives from two genes ("my_gene" and the leader gene) and occupies disjunct coordinates on the genome. The primary_transcript, which encodes the body of the mRNA, is part of (has as its Parent) this mRNA. The same relationship applies to the spliced leader RNA. The Derives_from relationship is used to indicate which genes produced the primary transcript and spliced leader respectively.</p>
-
         <p>The exon and CDS features follow in the normal fashion.</p>
     </dd>
-
     <dt>Programmed frameshift</dt>
     <dd>
         <p>This event occurs when the ribosome performs a programmed frameshift during translation in order to skip over an in-frame stop codon. The frameshift may occur forward or backward.</p>
-
         <pre>
 -------------------------&gt; mRNA
 ==========
           ============*  CDS</pre>
-
         <p>The representation of this is to make the CDS discontinuous:</p>
-
         <pre>
 chrX  . gene               XXXX   YYYY .  +  . ID=gene01;name=my_gene
 chrX  . mRNA               XXXX   YYYY .  +  . ID=tran01;Parent=gene01;Ontology_term=SO:1000069
 chrX  . exon               XXXX   YYYY .  +  . Parent=tran01
 chrX  . CDS                XXXX   YYYY 0  +  . ID=cds01;Parent=tran01
 chrX  . CDS                YYYY-1 ZZZZ 1  +  . ID=cds01;Parent=tran01</pre>
-
         <p>You will also need to adjust the phase field properly so that the CDS translates.</p>
-
         <p>It is suggested that the mRNA be tagged with the appropriate SO transcript attributes such as "minus_1_translational_frameshift" (SO:1000069). This will allow all such programmed frameshift mRNAs to be recovered with a query. The accession for "plus_1_translational_frameshift" is SO:1001263.</p>
     </dd>
-
     <dt>An operon</dt>
     <dd>
         <p>A classic operon occurs when the genes in a polycistronic transcript are co-regulated by cis-regulatory element(s):</p>
-
         <pre>
 regulatory element
 * ================================================&gt; operon
 -----&gt;XXXXXXX*--&gt;BBBBBB*---&gt;ZZZZ*--&gt;AAAAAA*-----</pre>
-
         <p>It can be indicated in GFF3 in this way:</p>
-
         <pre>
 chrX  . operon   XXXX YYYY  .  +  . ID=operon01;name=my_operon
 chrX  . promoter XXXX YYYY  .  +  . Parent=operon01
@@ -802,9 +706,7 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene01
 chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene02
 chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene03
 chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
-
         <p>The regulatory element ("promoter" in this example) is part of the operon via the Parent tag. The four genes are part of the operon, and the resulting mRNA is multiply-parented by the four genes, as in the earlier example.</p>
-
         <p>At the time of this writing, promoters and other cis-regulatory elements cannot be part_of an operon, but this restriction is being reconsidered.</p>
     </dd>
 </dl>
@@ -820,14 +722,12 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Added SO:0000110 sequence_feature as allowable under Column 3: "type".</li>
         </ul>
     </dd>
-
     <dt>1.22 Mon 2 May 2016</dt>
     <dd>
         <ul>
             <li>Converted from HTML to Markdown.</li>
         </ul>
     </dd>
-
     <dt>1.21 Tue Feb 26 05:59:31 MST 2013</dt>
     <dd>
         <ul>
@@ -839,14 +739,12 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Clarification to the ##sequence-region pragma.</li>
         </ul>
     </dd>
-
     <dt>1.20 Wed Dec 15 12:35:10 MST 2010</dt>
     <dd>
         <ul>
             <li>Added language to the description of the ID attribute to clarify that discontinuous features can exist on multiple lines and share the same ID.</li>
         </ul>
     </dd>
-
     <dt>1.19 Tue Jul 6 12:51:26 MDT 2010</dt>
     <dd>
         <ul>
@@ -854,21 +752,18 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Constrained multiple attribute values to the Parent, Alias, Note, Dbxref and Ontology_term attributes.</li>
         </ul>
     </dd>
-
     <dt>1.18 June 24 2010</dt>
     <dd>
         <ul>
             <li>Added the sections regarding circular genomes to the spec.</li>
         </ul>
     </dd>
-
     <dt>1.17 Wed June 2 2010</dt>
     <dd>
         <ul>
             <li>Changed the spec to include Sequence Ontology (SO) sequence_feature terms in column 3 as well as SOFA terms. (SOFA is a subset of SO).</li>
         </ul>
     </dd>
-
     <dt>1.16 Tue May 25 10:06:38 MDT 2010</dt>
     <dd>
         <ul>
@@ -878,28 +773,24 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Added ID attributes to CDS features (required for multiline features) in the FASTA pragma example.</li>
         </ul>
     </dd>
-
     <dt>1.15 Mon Aug 31 12:59:26 EDT 2009</dt>
     <dd>
         <ul>
             <li>Fixed incorrect CDS phases in the canonical gene example.</li>
         </ul>
     </dd>
-
     <dt>1.14 Mon Aug 25 10:24:02 EDT 2008</dt>
     <dd>
         <ul>
             <li>Add meta-directives for species and build number.</li>
         </ul>
     </dd>
-
     <dt>1.13 Wed May 23 10:31:01 EDT 2007</dt>
     <dd>
         <ul>
             <li>Insist that CDS include the start and end codon.</li>
         </ul>
     </dd>
-
     <dt>1.12 Thu Apr 5 17:32:32 EDT 2007</dt>
     <dd>
         <ul>
@@ -907,42 +798,36 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Phase is required for all CDS features.</li>
         </ul>
     </dd>
-
     <dt>1.11 Fri Dec 1 16:33:39 EST 2006</dt>
     <dd>
         <ul>
             <li>Clarified definition of phase relative to reverse strand features.</li>
         </ul>
     </dd>
-
     <dt>1.10 14 September 2006</dt>
     <dd>
         <ul>
             <li>Reformatted for new SO web site.</li>
         </ul>
     </dd>
-
     <dt>1.09 Wed Sep 6 17:55:32 EDT 2006</dt>
     <dd>
         <ul>
             <li>Information about the GFF3 validator.</li>
         </ul>
     </dd>
-
     <dt>1.08 Tue Jul 18 15:12:11 EDT 2006</dt>
     <dd>
         <ul>
             <li>Added URLs for SO releases.</li>
         </ul>
     </dd>
-
     <dt>1.07 Wed May 24 21:59:02 EDT 2006</dt>
     <dd>
         <ul>
             <li>Fixed description of phase (temporarily lost due to CVS glitches).</li>
         </ul>
     </dd>
-
     <dt>1.06 Wed May 24 11:44:22 EDT 2006</dt>
     <dd>
         <ul>
@@ -950,7 +835,6 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Fixed typos found by Gordon Gremme.</li>
         </ul>
     </dd>
-
     <dt>1.05 Tue May 23 10:46:25 EDT 2006</dt>
     <dd>
         <ul>
