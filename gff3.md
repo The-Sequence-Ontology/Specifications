@@ -164,19 +164,19 @@ Note that several of the features, including the gene, its mRNAs and the CDSs, a
     ctg123 . exon            3000 3902  .  +  .  Parent=mRNA00001,mRNA00003
     ctg123 . exon            5000 5500  .  +  .  Parent=mRNA00001,mRNA00002,mRNA00003
     ctg123 . exon            7000 9000  .  +  .  Parent=mRNA00001,mRNA00002,mRNA00003
-    ctg123 . CDS             1201 1500  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             3000 3902  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             5000 5500  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             7000 7600  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             1201 1500  .  +  0  ID=cds00002;Parent=mRNA00002
-    ctg123 . CDS             5000 5500  .  +  0  ID=cds00002;Parent=mRNA00002
-    ctg123 . CDS             7000 7600  .  +  0  ID=cds00002;Parent=mRNA00002
-    ctg123 . CDS             3301 3902  .  +  0  ID=cds00003;Parent=mRNA00003
-    ctg123 . CDS             5000 5500  .  +  1  ID=cds00003;Parent=mRNA00003
-    ctg123 . CDS             7000 7600  .  +  1  ID=cds00003;Parent=mRNA00003
-    ctg123 . CDS             3391 3902  .  +  0  ID=cds00004;Parent=mRNA00003
-    ctg123 . CDS             5000 5500  .  +  1  ID=cds00004;Parent=mRNA00003
-    ctg123 . CDS             7000 7600  .  +  1  ID=cds00004;Parent=mRNA00003
+    ctg123 . CDS             1201 1500  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             3000 3902  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             5000 5500  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             7000 7600  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             1201 1500  .  +  0  Parent=mRNA00002
+    ctg123 . CDS             5000 5500  .  +  0  Parent=mRNA00002
+    ctg123 . CDS             7000 7600  .  +  0  Parent=mRNA00002
+    ctg123 . CDS             3301 3902  .  +  0  Parent=mRNA00003
+    ctg123 . CDS             5000 5500  .  +  1  Parent=mRNA00003
+    ctg123 . CDS             7000 7600  .  +  1  Parent=mRNA00003
+    ctg123 . CDS             3391 3902  .  +  0  Parent=mRNA00003
+    ctg123 . CDS             5000 5500  .  +  1  Parent=mRNA00003
+    ctg123 . CDS             7000 7600  .  +  1  Parent=mRNA00003
 
 <dl>
     <dt>NOTE 1<dd>
