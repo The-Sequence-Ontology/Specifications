@@ -164,19 +164,19 @@ Note that several of the features, including the gene, its mRNAs and the CDSs, a
     ctg123 . exon            3000 3902  .  +  .  Parent=mRNA00001,mRNA00003
     ctg123 . exon            5000 5500  .  +  .  Parent=mRNA00001,mRNA00002,mRNA00003
     ctg123 . exon            7000 9000  .  +  .  Parent=mRNA00001,mRNA00002,mRNA00003
-    ctg123 . CDS             1201 1500  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             3000 3902  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             5000 5500  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             7000 7600  .  +  0  ID=cds00001;Parent=mRNA00001
-    ctg123 . CDS             1201 1500  .  +  0  ID=cds00002;Parent=mRNA00002
-    ctg123 . CDS             5000 5500  .  +  0  ID=cds00002;Parent=mRNA00002
-    ctg123 . CDS             7000 7600  .  +  0  ID=cds00002;Parent=mRNA00002
-    ctg123 . CDS             3301 3902  .  +  0  ID=cds00003;Parent=mRNA00003
-    ctg123 . CDS             5000 5500  .  +  1  ID=cds00003;Parent=mRNA00003
-    ctg123 . CDS             7000 7600  .  +  1  ID=cds00003;Parent=mRNA00003
-    ctg123 . CDS             3391 3902  .  +  0  ID=cds00004;Parent=mRNA00003
-    ctg123 . CDS             5000 5500  .  +  1  ID=cds00004;Parent=mRNA00003
-    ctg123 . CDS             7000 7600  .  +  1  ID=cds00004;Parent=mRNA00003
+    ctg123 . CDS             1201 1500  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             3000 3902  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             5000 5500  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             7000 7600  .  +  0  Parent=mRNA00001
+    ctg123 . CDS             1201 1500  .  +  0  Parent=mRNA00002
+    ctg123 . CDS             5000 5500  .  +  0  Parent=mRNA00002
+    ctg123 . CDS             7000 7600  .  +  0  Parent=mRNA00002
+    ctg123 . CDS             3301 3902  .  +  0  Parent=mRNA00003
+    ctg123 . CDS             5000 5500  .  +  1  Parent=mRNA00003
+    ctg123 . CDS             7000 7600  .  +  1  Parent=mRNA00003
+    ctg123 . CDS             3391 3902  .  +  0  Parent=mRNA00003
+    ctg123 . CDS             5000 5500  .  +  1  Parent=mRNA00003
+    ctg123 . CDS             7000 7600  .  +  1  Parent=mRNA00003
 
 <dl>
     <dt>NOTE 1<dd>
@@ -560,7 +560,7 @@ ttaggcttaggcttaggcttaggcttaggcttaggcttaggcttaggctt
 aggcttaggcttaggcttaggcttaggcttaggcttaggcttaggcttag
 aatctagctagctatccgaaattcgaggcctgaaaagtgtgacgccattc
 ...
-&gt;cnda0123
+&gt;cdna0123
 ttcaagtgctcagtcaatgtgattcacagtatgtcaccaaatattttggc
 agctttctcaagggatcaaaattatggatcattatggaatacctcggtgg
 aggctcagcgctcgatttaactaaaagtggaaagctggacgaaagtcata
@@ -582,13 +582,13 @@ The following section discusses how to represent "pathological" cases that arise
         <pre>-----&gt;XXXXXXX*------&gt;</pre>
         <p>The preferred representation is to create a gene, a transcript, an exon and a CDS:</p>
         <pre>
-chrX  . gene XXXX YYYY  .  +  . ID=gene01;name=resA
+chrX  . gene XXXX YYYY  .  +  . ID=gene01;Name=resA
 chrX  . mRNA XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . exon XXXX YYYY  .  +  . Parent=tran01
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01</pre>
         <p>Some groups will find this redundant. A valid alternative is to omit the exon feature:</p>
         <pre>
-chrX  . gene XXXX YYYY  .  +  . ID=gene01;name=resA
+chrX  . gene XXXX YYYY  .  +  . ID=gene01;Name=resA
 chrX  . mRNA XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01</pre>
         <p>It is not recommended to parent the CDS directly onto the gene, because this will make it impossible to determine the UTRs (since the gene may validly include untranscribed regulatory regions).</p>
@@ -600,10 +600,10 @@ chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01</pre>
         <pre>-----&gt;XXXXXXX*--&gt;BBBBBB*---&gt;ZZZZ*--&gt;AAAAAA*-----</pre>
         <p>Since the single transcript corresponds to multiple genes that can be identified by genetic analysis, the recommended solution here is to create four "gene" objects and make them the parent for a single transcript. The transcript will contain a single exon (in the unspliced case) and four separate CDSs:</p>
         <pre>
-chrX  . gene XXXX YYYY  .  +  . ID=gene01;name=resA
-chrX  . gene XXXX YYYY  .  +  . ID=gene02;name=resB
-chrX  . gene XXXX YYYY  .  +  . ID=gene03;name=resX
-chrX  . gene XXXX YYYY  .  +  . ID=gene04;name=resZ
+chrX  . gene XXXX YYYY  .  +  . ID=gene01;Name=resA
+chrX  . gene XXXX YYYY  .  +  . ID=gene02;Name=resB
+chrX  . gene XXXX YYYY  .  +  . ID=gene03;Name=resX
+chrX  . gene XXXX YYYY  .  +  . ID=gene04;Name=resZ
 chrX  . mRNA XXXX YYYY  .  +  . ID=tran01;Parent=gene01,gene02,gene03,gene04
 chrX  . exon XXXX YYYY  .  +  . ID=exon00001;Parent=tran01
 chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene01
@@ -620,7 +620,7 @@ chrX  . CDS  XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
 (yyyyyy is the intein)</pre>
         <p>The preferred representation is to create one gene, one transcript, one exon, and one CDS. The CDS produces a pre-polypeptide using the "Derives_from" tag, and this polypeptide in turn gives rise to two mature_polypeptides, one each for the intein and the flanking protein:</p>
         <pre>
-chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=resA
+chrX  . gene               XXXX YYYY  .  +  . ID=gene01;Name=resA
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . exon               XXXX YYYY  .  +  . Parent=tran01
 chrX  . CDS                XXXX YYYY  .  +  . ID=cds01;Parent=tran01
@@ -631,8 +631,8 @@ chrX  . intein             XXXX YYYY  .  +  . ID=poly03;Parent=poly01</pre>
         <p>Because the flanking mature_polypeptide has discontinuous coordinates on the genome, it appears twice with the same ID.</p>
         <p>If the intein is immediately degraded, you may not wish to annotate it explicitly, and its line would be deleted from the example. However, if it has molecular activity, it may correspond to a gene, in which case:</p>
         <pre>
-chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=resA
-chrX  . gene               XXXX YYYY  .  +  . ID=gene02;name=inteinA
+chrX  . gene               XXXX YYYY  .  +  . ID=gene01;Name=resA
+chrX  . gene               XXXX YYYY  .  +  . ID=gene02;Name=inteinA
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01,gene02
 chrX  . exon               XXXX YYYY  .  +  . Parent=tran01
 chrX  . CDS                XXXX YYYY  .  +  . ID=cds01;Parent=tran01
@@ -651,20 +651,21 @@ leader
 =======&gt;-----&gt;XXXXXXX*------&gt;</pre>
         <p>The simplest way to represent this is to show the mRNA as being split across two discontinuous genomic locations:</p>
         <pre>
-chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=my_gene
+chrX  . gene               XXXX YYYY  .  +  . ID=gene01;Name=my_gene
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01
 chrX  . exon               XXXX YYYY  .  +  . Parent=tran01
 chrX  . CDS                XXXX YYYY  .  +  . ID=cds01;Parent=tran01</pre>
         <p>However, this does not indicate which part of the transcript comes from the spliced leader. A preferred representation explicitly adds features for the spliced leader gene, the primary_transcript and the spliced_leader_RNA:</p>
         <pre>
-chrX  . gene               XXXX YYYY  .  +  . ID=gene01;name=my_gene
-chrX  . gene               XXXX YYYY  .  +  . ID=gene02;name=leader_gene
+chrX  . gene               XXXX YYYY  .  +  . ID=gene01;Name=my_gene
+chrX  . gene               XXXX YYYY  .  +  . ID=gene02;Name=leader_gene
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01,gene02
 chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01,gene02
 chrX  . primary_transcript XXXX YYYY  .  +  . ID=pt01;Parent=tran01;Derives_from=gene01
 chrX  . spliced_leader_RNA XXXX YYYY  .  +  . ID=sl01;Parent=tran01;Derives_from=gene02
-chrX  . exon               XXXX YYYY  .  +  . Parent=tran01 chrX . CDS XXXX YYYY . + . ID=cds01;Parent=tran01</pre>
+chrX  . exon               XXXX YYYY  .  +  . Parent=tran01
+chrX  . CDS XXXX YYYY . + . ID=cds01;Parent=tran01</pre>
         <p>As shown here, the mRNA derives from two genes ("my_gene" and the leader gene) and occupies disjunct coordinates on the genome. The primary_transcript, which encodes the body of the mRNA, is part of (has as its Parent) this mRNA. The same relationship applies to the spliced leader RNA. The Derives_from relationship is used to indicate which genes produced the primary transcript and spliced leader respectively.</p>
         <p>The exon and CDS features follow in the normal fashion.</p>
     </dd>
@@ -677,7 +678,7 @@ chrX  . exon               XXXX YYYY  .  +  . Parent=tran01 chrX . CDS XXXX YYYY
           ============*  CDS</pre>
         <p>The representation of this is to make the CDS discontinuous:</p>
         <pre>
-chrX  . gene               XXXX   YYYY .  +  . ID=gene01;name=my_gene
+chrX  . gene               XXXX   YYYY .  +  . ID=gene01;Name=my_gene
 chrX  . mRNA               XXXX   YYYY .  +  . ID=tran01;Parent=gene01;Ontology_term=SO:1000069
 chrX  . exon               XXXX   YYYY .  +  . Parent=tran01
 chrX  . CDS                XXXX   YYYY 0  +  . ID=cds01;Parent=tran01
@@ -694,12 +695,12 @@ regulatory element
 -----&gt;XXXXXXX*--&gt;BBBBBB*---&gt;ZZZZ*--&gt;AAAAAA*-----</pre>
         <p>It can be indicated in GFF3 in this way:</p>
         <pre>
-chrX  . operon   XXXX YYYY  .  +  . ID=operon01;name=my_operon
+chrX  . operon   XXXX YYYY  .  +  . ID=operon01;Name=my_operon
 chrX  . promoter XXXX YYYY  .  +  . Parent=operon01
-chrX  . gene     XXXX YYYY  .  +  . ID=gene01;Parent=operon01;name=resA
-chrX  . gene     XXXX YYYY  .  +  . ID=gene02;Parent=operon01;name=resB
-chrX  . gene     XXXX YYYY  .  +  . ID=gene03;Parent=operon01;name=resX
-chrX  . gene     XXXX YYYY  .  +  . ID=gene04;Parent=operon01;name=resZ
+chrX  . gene     XXXX YYYY  .  +  . ID=gene01;Parent=operon01;Name=resA
+chrX  . gene     XXXX YYYY  .  +  . ID=gene02;Parent=operon01;Name=resB
+chrX  . gene     XXXX YYYY  .  +  . ID=gene03;Parent=operon01;Name=resX
+chrX  . gene     XXXX YYYY  .  +  . ID=gene04;Parent=operon01;Name=resZ
 chrX  . mRNA     XXXX YYYY  .  +  . ID=tran01;Parent=gene01,gene02,gene03,gene04
 chrX  . exon     XXXX YYYY  .  +  . ID=exon00001;Parent=tran01
 chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene01
