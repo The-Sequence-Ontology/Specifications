@@ -665,7 +665,7 @@ chrX  . mRNA               XXXX YYYY  .  +  . ID=tran01;Parent=gene01,gene02
 chrX  . primary_transcript XXXX YYYY  .  +  . ID=pt01;Parent=tran01;Derives_from=gene01
 chrX  . spliced_leader_RNA XXXX YYYY  .  +  . ID=sl01;Parent=tran01;Derives_from=gene02
 chrX  . exon               XXXX YYYY  .  +  . Parent=tran01
-chrX  . CDS XXXX YYYY . + . ID=cds01;Parent=tran01</pre>
+chrX  . CDS XXXX YYYY                 .  +  . ID=cds01;Parent=tran01</pre>
         <p>As shown here, the mRNA derives from two genes ("my_gene" and the leader gene) and occupies disjunct coordinates on the genome. The primary_transcript, which encodes the body of the mRNA, is part of (has as its Parent) this mRNA. The same relationship applies to the spliced leader RNA. The Derives_from relationship is used to indicate which genes produced the primary transcript and spliced leader respectively.</p>
         <p>The exon and CDS features follow in the normal fashion.</p>
     </dd>
