@@ -68,7 +68,7 @@ Undefined fields are replaced with the "." character, as described in the origin
         <p>These tags have predefined meanings:</p>
         <dl>
             <dt>ID</dt>
-            <dd>Indicates the ID of the feature. IDs for each feature must be unique within the scope of the GFF file. In the case of discontinuous features (i.e. a single feature that exists over multiple genomic locations) the same ID may appear on multiple lines. All lines that share an ID collectively represent a single feature.</dd>
+            <dd>Indicates the ID of the feature.   The ID attribute is required for  features that have children (e.g. gene and mRNAs), or for those that span multiple lines, but are optional for other features.  IDs for each feature must be unique within the scope of the GFF file. In the case of discontinuous features (i.e. a single feature that exists over multiple genomic locations) the same ID may appear on multiple lines. All lines that share an ID must collectively represent a single feature.</dd>
             <dt>Name</dt>
             <dd>Display name for the feature. This is the name to be displayed to the user. Unlike IDs, there is no requirement that the Name be unique within the file.</dd>
             <dt>Alias</dt>
@@ -150,7 +150,7 @@ Lines 7-11 identify the five exons. The Parent attributes indicate which mRNAs t
 
 Lines 12-24 denote this gene's four CDSs. Each CDS belongs to one of the mRNAs. cds00003 and cds00004, which correspond to alternative start codons, belong to the same mRNA.
 
-Note that several of the features, including the gene, its mRNAs and the CDSs, all have Name attributes. This attributes assigns those features a public name, but is not mandatory. The ID attributes are only mandatory for those features that have children (the gene and mRNAs), or for those that span multiple lines. The IDs do not have meaning outside the file in which they reside. Hence, a slightly simplified version of this file would look like this:
+Note that several of the features, including the gene, its mRNAs and the CDSs, all have Name attributes. This attributes assigns those features a public name, but is not mandatory. The ID attributes are only mandatory for those features that have children (the gene and mRNAs), or for those that span multiple lines. The IDs are not required to have meaning outside the file in which they reside. Hence, a slightly simplified version of this file would look like this:
 
     ##gff-version 3.2.1
     ##sequence-region ctg123 1 1497228
