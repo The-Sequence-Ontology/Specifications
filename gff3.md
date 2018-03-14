@@ -682,8 +682,8 @@ chrX  . gene               XXXX   YYYY .  +  . ID=gene01;name=my_gene
 chrX  . mRNA               XXXX   YYYY .  +  . ID=tran01;Parent=gene01;Ontology_term=SO:1000069
 chrX  . exon               XXXX   YYYY .  +  . Parent=tran01
 chrX  . CDS                XXXX   YYYY .  +  0 ID=cds01;Parent=tran01
-chrX  . CDS                YYYY-1 ZZZZ .  +  1 ID=cds01;Parent=tran01</pre>
-        <p>You will also need to adjust the phase field properly so that the CDS translates.</p>
+chrX  . CDS                YYYY-1 ZZZZ .  +  0 ID=cds01;Parent=tran01</pre>
+        <p>The CDS segment that represent the new reading frame will always has a phase of 0 since the ribosome is moving and thus redfining the codon.</p>
         <p>It is suggested that the mRNA be tagged with the appropriate SO transcript attributes such as "minus_1_translational_frameshift" (SO:1000069). This will allow all such programmed frameshift mRNAs to be recovered with a query. The accession for "plus_1_translational_frameshift" is SO:1001263.</p>
     </dd>
     <dt>An operon</dt>
