@@ -710,6 +710,11 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
         <p>The regulatory element ("promoter" in this example) is part of the operon via the Parent tag. The four genes are part of the operon, and the resulting mRNA is multiply-parented by the four genes, as in the earlier example.</p>
         <p>At the time of this writing, promoters and other cis-regulatory elements cannot be part_of an operon, but this restriction is being reconsidered.</p>
     </dd>
+        <dt>miRNA extension</dt>
+    <dd>
+        <p>mirGFF3 format is adapted from the GFF3 definition to contain miRNA/isomiRs information from miRNA-seq data. The main difference is at the Attributes column, where these fields are mandatory: Variant, Cigar, Hits, Expression and Filter. To understand more about each one, please visit the main repository <li>https://github.com/miRTop/mirGFF3</li></p>
+        <pre>
+    </dd>
 </dl>
 
 ------------------------------------------------------------------------
@@ -717,6 +722,12 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
 #### Change Log
 
 <dl>
+    <dt>1.24 Mon 15 July 2019</dt>
+    <dd>
+        <ul>
+            <li>Added miRNA extension to the pathological cases.</li>
+        </ul>
+    </dd>
     <dt>1.23 Fri 3 Oct 2016</dt>
     <dd>
         <ul>
