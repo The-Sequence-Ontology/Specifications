@@ -4,7 +4,7 @@
 
 Author: Lincoln Stein  
 Date: 26 February 2013  
-Version: 1.24  
+Version: 1.25  
 
 Although there are many richer ways of representing genomic features via XML and in relational database schemas, the stubborn persistence of a variety of ad-hoc tab-delimited flat file formats declares the bioinformatics community's need for a simple format that can be modified with a text editor and processed with shell tools like grep. The GFF format, although widely used, has fragmented into multiple incompatible dialects. When asked why they have modified the published Sanger specification, bioinformaticists frequently answer that the format was insufficient for their needs, and they needed to extend it. The proposed GFF3 format addresses the most common extensions to GFF, while preserving backward compatibility with previous formats. The new format:
 
@@ -57,10 +57,8 @@ Undefined fields are replaced with the "." character, as described in the origin
     <dt>Column 7: "strand"</dt>
     <dd>The strand of the feature. + for positive strand (relative to the landmark), - for minus strand, and . for features that are not stranded. In addition, ? can be used for features whose strandedness is relevant, but unknown.</dd>
     <dt>Column 8: "phase"</dt>
-    <dd>
-        <p>For features of type "CDS", the phase indicates where the next codon begins relative to the start of the current CDS feature. The phase is one of the integers 0, 1, or 2, indicating the number of bases forward from the start of the current CDS feature the next codon begins.  A phase of "0" indicates that a codon begins on the first base of the CDS feature (i.e. 0 bases forward), a phase of "1" indicates that the next codon begins at the second base of this region and a phase of "2" indicates that the codon begins at the third base of this region. Note that ‘Phase’ in the context of a GFF3 CDS feature should not be confused with the similar concept of frame that is also a common concept in bioinformatics.  Frame is generally calculated as a value for a given base relative to the start of a codon (e.g. <codon position> modulo 3) while CDS phase describes the start of the next codon relative to a given CDS feature.</p>            
-        <p>For features of type "CDS", the phase indicates where the feature begins with reference to the reading frame. The phase is one of the integers 0, 1, or 2, indicating the number of bases that should be removed from the beginning of this feature to reach the first base of the next codon. In other words, a phase of "0" indicates that the next codon begins at the first base of the region described by the current line, a phase of "1" indicates that the next codon begins at the second base of this region, and a phase of "2" indicates that the codon begins at the third base of this region. This is NOT to be confused with the frame, which is simply start modulo 3.</p>
-        <p>For forward strand features, phase is counted from the start field of the CDS feature. For reverse strand features, phase is counted back from the end field of the CDS feature.</p>
+    <dd>f
+        <p>For features of type "CDS", the phase indicates where the next codon begins relative to the 5' end (where the 5' end of the CDS is relative to the strand of the CDS feature) of the current CDS feature. For clarification the 5' end for CDS features on the plus strand is the feature's start and and the 5' end for CDS features on the minus strand is the feature's end.  The phase is one of the integers 0, 1, or 2, indicating the number of bases forward from the start of the current CDS feature the next codon begins.  A phase of "0" indicates that a codon begins on the first nucleotide of the CDS feature (i.e. 0 bases forward), a phase of "1" indicates that the codon begins at the second nucleotide of this CDS feature and a phase of "2" indicates that the codon begins at the third nucleotide of this region. Note that ‘Phase’ in the context of a GFF3 CDS feature should not be confused with the similar concept of frame that is also a common concept in bioinformatics.  Frame is generally calculated as a value for a given base relative to the start of the complete open reading frame (ORF) or the codon (e.g. <codon position> modulo 3) while CDS phase describes the start of the next codon relative to a given CDS feature.</p>            
         <p>The phase is REQUIRED for all CDS features.</p>
     </dd>
     <dt>Column 9: "attributes"</dt>
@@ -723,6 +721,12 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
 #### Change Log
 
 <dl>
+    <dt>1.25 Tues 24 Sept 2019</dt>
+    <dd>
+        <ul>
+            <li>Added clarifications to CDS phase based on discussions with </li>
+        </ul>
+    </dd>
     <dt>1.24 Mon 15 July 2019</dt>
     <dd>
         <ul>
