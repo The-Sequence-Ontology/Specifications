@@ -72,7 +72,7 @@ Undefined fields are replaced with the "." character, as described in the origin
             <dd>Display name for the feature. This is the name to be displayed to the user. Unlike IDs, there is no requirement that the Name be unique within the file.</dd>
             <dt>Alias</dt>
             <dd>A secondary name for the feature. It is suggested that this tag be used whenever a secondary identifier for the feature is needed, such as locus names and accession numbers. Unlike ID, there is no requirement that Alias be unique within the file.</dd>
-            <dt>[Parent](#parent-(part_of)-relationships)</dt>
+            <dt><a href="#parent-part_of-relationships">Parent</a></dt>
             <dd>Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, an so forth. A feature may have multiple parents. Parent can <em>only</em> be used to indicate a partof relationship.</dd>
             <dt>Target</dt>
             <dd>Indicates the target of a nucleotide-to-nucleotide or protein-to-nucleotide alignment. The format of the value is "target_id start end [strand]", where strand is optional and may be "+" or "-". If the target_id contains spaces, they must be escaped as hex escape %20.</dd>
@@ -82,9 +82,9 @@ Undefined fields are replaced with the "." character, as described in the origin
             <dd>Used to disambiguate the relationship between one feature and another when the relationship is a temporal one rather than a purely structural "part of" one. This is needed for polycistronic genes. See "PATHOLOGICAL CASES" for further discussion.</dd>
             <dt>Note</dt>
             <dd>A free text note.</dd>
-            <dt>[Dbxref](ontology-associations-and-db-cross-references)</dt>
+            <dt><a href="#ontology-associations-and-db-cross-references">Dbxref</a></dt>
             <dd>A database cross reference. See the section "Ontology Associations and Db Cross References" for details on the format.</dd>
-            <dt>[Ontology_term](ontology-associations-and-db-cross-references)</dt>
+            <dt><a href="#ontology-associations-and-db-cross-references">Ontology_term</a></dt>
             <dd>A cross reference to an ontology term. See the section "Ontology Associations and Db Cross References" for details.</dd>
             <dt>Is_circular</dt>
             <dd>A flag to indicate whether a feature is circular. See extended discussion below.</dd>
