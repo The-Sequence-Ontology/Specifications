@@ -76,7 +76,7 @@ Undefined fields are replaced with the "." character, as described in the origin
             <dd>Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, an so forth. A feature may have multiple parents. Parent can <em>only</em> be used to indicate a partof relationship.</dd>
             <dt>Target</dt>
             <dd>Indicates the target of a nucleotide-to-nucleotide or protein-to-nucleotide alignment. The format of the value is "target_id start end [strand]", where strand is optional and may be "+" or "-". If the target_id contains spaces, they must be escaped as hex escape %20.</dd>
-            <dt>[Gap](#the-gap-attribute)</dt>
+            <dt><a href="#the-gap-attribute">Gap</a></dt>
             <dd>The alignment of the feature to the target if the two are not collinear (e.g. contain gaps). The alignment format is inspired from the CIGAR format described in the <a href="https://www.ebi.ac.uk/about/vertebrate-genomics/software/exonerate-manual">Exonerate documentation</a>.</dd>
             <dt>Derives_from</dt>
             <dd>Used to disambiguate the relationship between one feature and another when the relationship is a temporal one rather than a purely structural "part of" one. This is needed for polycistronic genes. See "PATHOLOGICAL CASES" for further discussion.</dd>
