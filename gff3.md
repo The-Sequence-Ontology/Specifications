@@ -36,7 +36,7 @@ In addition, the following characters have reserved meanings in column 9 and mus
 -   & ampersand (%26)
 -   , comma (%2C)
 
-Note that unescaped spaces are allowed within fields, meaning that parsers must split on tabs, not spaces. Use of the "+" (plus) character to encode spaces is depracated from early versions of the spec and is no longer allowed.
+Note that unescaped spaces are allowed within fields, meaning that parsers must split on tabs, not spaces. Use of the "+" (plus) character to encode spaces is deprecated from early versions of the spec and is no longer allowed.
 
 Undefined fields are replaced with the "." character, as described in the original GFF spec.
 
@@ -135,7 +135,7 @@ Here is how this gene should be described using GFF3:
     23  ctg123 . CDS             5000  5500  .  +  1  ID=cds00004;Parent=mRNA00003;Name=edenprotein.4
     24  ctg123 . CDS             7000  7600  .  +  1  ID=cds00004;Parent=mRNA00003;Name=edenprotein.4
 
-Lines beginning with '##' are directives (sometimes called pragmas or meta-data) and provide meta-information about the document as a whole. Blank lines should be ignored by parsers and lines beginning with a single '#' are used for human-readable comments and can be ignored by parsers. End-of-line comments (comments preceeded by # at the end of and on the same line as a feature or directive line) are not allowed.
+Lines beginning with '##' are directives (sometimes called pragmas or meta-data) and provide meta-information about the document as a whole. Blank lines should be ignored by parsers and lines beginning with a single '#' are used for human-readable comments and can be ignored by parsers. End-of-line comments (comments preceded by # at the end of and on the same line as a feature or directive line) are not allowed.
 
 Line 0 gives the GFF version using the ##gff-version pragma. Line 1 indicates the boundaries of the region being annotated (a 1,497,228 bp region named "ctg123") using the ##sequence-region pragma.
 
@@ -412,7 +412,7 @@ In this case, the 5' EST_C aligns to the reverse complement of the forward stran
 
 The first line indicates that the transcript is on the - strand of the genome, and that EST_C aligns to the transcripts forward strand. The second line uses - in the 7th column to indicate that the transcript is on the minus strand, and - in the Target field to indicate that EST_D aligns to the minus strand of the transcript.
 
-*Confused?* Just remember that for purposes of display, the source and target strands will be multipled together. A +/+ or -/- alignment indicates that the reference sequence and the target sequence can be aligned directly. A +/- or -/+ alignment indicates that the target must be reverse complemented in order to align to the plus strand of the reference sequence.
+*Confused?* Just remember that for purposes of display, the source and target strands will be multiplied together. A +/+ or -/- alignment indicates that the reference sequence and the target sequence can be aligned directly. A +/- or -/+ alignment indicates that the target must be reverse complemented in order to align to the plus strand of the reference sequence.
 
 A similar rule applies to TBLASTX alignments, which rely on matching the six-frame translation of the source to the six-frame translation of the target. Consider the case of two genomes that align together in the forward direction, whose alignment is supported by translations of genes A and B, one of which is on the plus strand, and the other on the minus strand:
 
@@ -465,13 +465,13 @@ Here are some common examples:
 
 #### Other Syntax
 
-Comment lines begin with the '#' symbol. End-of-line comments (comments preceeded by '#' at the end of and on the same line as a feature or directive line) are not allowed. Directive lines (sometimes refered to as pragmas or meta-data) are preceded by '##'. Application specific directives are allowed, but are not required to be supported by parsers. The following directives are specified:
+Comment lines begin with the '#' symbol. End-of-line comments (comments preceded by '#' at the end of and on the same line as a feature or directive line) are not allowed. Directive lines (sometimes referred to as pragmas or meta-data) are preceded by '##'. Application specific directives are allowed, but are not required to be supported by parsers. The following directives are specified:
 
 <dl>
     <dt>##gff-version 3.2.1</dt>
     <dd>The GFF version follows the format of 3.#.# in this spec. This directive must be present, must be the topmost line of the file. The version number always begins with 3, the second and third numbers are optional and indicate a major revision and a minor revision respectively.</dd>
     <dt>##sequence-region seqid start end</dt>
-    <dd>The sequence segment referred to by this file, in the format "seqid start end". This element is optional, but strongly encouraged because it allows parsers to perform bounds checking on features. There may be multiple ##sequence-region directives, each corresponding to one of the reference sequences referred to in the body of the file, however only one ##sequence-region directive may be given for any given seqid. While a ##sequence-region pragma is not required for any or all landmark features when one is given all features on that landmark feature (having that seqid) must be contained within the range defined by that ##sequence-region diretive. An exception to this rule is allowed when a landmark feature is marked with the Is_circular attribute. In that case the features contained on that landmark may extend their coordiantes beyond the boundary as described above.</dd>
+    <dd>The sequence segment referred to by this file, in the format "seqid start end". This element is optional, but strongly encouraged because it allows parsers to perform bounds checking on features. There may be multiple ##sequence-region directives, each corresponding to one of the reference sequences referred to in the body of the file, however only one ##sequence-region directive may be given for any given seqid. While a ##sequence-region pragma is not required for any or all landmark features when one is given all features on that landmark feature (having that seqid) must be contained within the range defined by that ##sequence-region directive. An exception to this rule is allowed when a landmark feature is marked with the Is_circular attribute. In that case the features contained on that landmark may extend their coordinates beyond the boundary as described above.</dd>
     <dt>##feature-ontology URI</dt>
     <dd>
         <p>This directive indicates that the GFF3 file uses the ontology of feature types located at the indicated URI or URL. Multiple URIs may be added, in which case they are merged (or raise an exception if they cannot be merged). The URIs for the released sequence ontologies are:</p>
@@ -682,7 +682,7 @@ chrX  . mRNA               XXXX   YYYY .  +  . ID=tran01;Parent=gene01;Ontology_
 chrX  . exon               XXXX   YYYY .  +  . Parent=tran01
 chrX  . CDS                XXXX   YYYY .  +  0 ID=cds01;Parent=tran01
 chrX  . CDS                YYYY-1 ZZZZ .  +  0 ID=cds01;Parent=tran01</pre>
-        <p>The CDS segment that represent the new reading frame will always has a phase of 0 since the ribosome is moving and thus redfining the codon.</p>
+        <p>The CDS segment that represent the new reading frame will always has a phase of 0 since the ribosome is moving and thus redefining the codon.</p>
         <p>It is suggested that the mRNA be tagged with the appropriate SO transcript attributes such as "minus_1_translational_frameshift" (SO:1000069). This will allow all such programmed frameshift mRNAs to be recovered with a query. The accession for "plus_1_translational_frameshift" is SO:1001263.</p>
     </dd>
     <dt>An operon</dt>
@@ -751,7 +751,7 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Clarification of escaping conventions.</li>
             <li>Explicit requirement that the value of start and end be one-based positive integers.</li>
             <li>Clarification to the use of quotes in attribute values.</li>
-            <li>Clarification of lines begining with # and exclusion of inline comments.</li>
+            <li>Clarification of lines beginning with # and exclusion of inline comments.</li>
             <li>Clarification that the ##gff-version pragma only appears once in a file.</li>
             <li>Clarification to the ##sequence-region pragma.</li>
         </ul>
