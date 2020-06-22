@@ -711,8 +711,7 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
     </dd>
         <dt>miRNA extension</dt>
     <dd>
-        <p>mirGFF3 format is adapted from the GFF3 definition to contain miRNA/isomiRs information from miRNA-seq data. The main difference is at the Attributes column, where these fields are mandatory: Variant, Cigar, Hits, Expression and Filter. To understand more about each one, please visit the main repository <li>https://github.com/miRTop/mirGFF3</li></p>
-        <pre>
+        <p>mirGFF3 format is adapted from the GFF3 definition to contain miRNA/isomiRs information from miRNA-seq data. The main difference is at the Attributes column, where these fields are mandatory: Variant, Cigar, Hits, Expression and Filter. To understand more about each one, please visit the main repository https://github.com/miRTop/mirGFF3</p>
     </dd>
 </dl>
 
