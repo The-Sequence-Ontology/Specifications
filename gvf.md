@@ -1517,7 +1517,7 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
             <li>Converted from HTML to Markdown.</li>
         </ul>
     </dd>
-    <dt>1.07 Mon Apr 28 13:44:47 MDT 2014</dt>
+    <dt>1.07 Mon 28 Apr 2014</dt>
     <dd>
         <ul>
             <li>Updated the ##technology-platform-name pragma.</li>
@@ -1525,7 +1525,7 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
             <li>Updated wording for the Reference_seq attribute and changed it's status to required.</li>
         </ul>
     </dd>
-    <dt>1.06 Tue Jan 24 14:46:17 MST 2012</dt>
+    <dt>1.06 Tue 24 Jan 2012</dt>
     <dd>
         <ul>
             <li>Added "Blue Box" description of a very simple implimentation of GVF.</li>
@@ -1544,7 +1544,7 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
             <li>The values for attributes which provide data that corresponds to each copy of a chromosome (Genotype and Variant_reads) have colon separated values for each chromosome present and comma separated lists of these value sets for multiple individuals in a multi-individual GVF.</li>
         </ul>
     </dd>
-    <dt>1.05 Wed Jan 19 16:26:14 MST 2011</dt>
+    <dt>1.05 Wed 19 Jan 2011</dt>
     <dd>
         <ul>
             <li>Modified the description and examples for the Start_range and End_range tag slightly as per discussions with NCBI, Ensembl and UCSC.</li>
@@ -1552,13 +1552,13 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
             <li>Several typo fixes that were caught by Bob Kuhn and John Lopez.</li>
         </ul>
     </dd>
-    <dt>1.04 Tue Dec 14 14:51:41 MST 2010</dt>
+    <dt>1.04 Tue 14 Dec 2010</dt>
     <dd>
         <ul>
             <li>Added Display_id attribute to the Individual-id pragma.</li>
         </ul>
     </dd>
-    <dt>1.03 Wed Nov 24 10:45:18 MST 2010</dt>
+    <dt>1.03 Wed 24 Nov 2010</dt>
     <dd>
         <ul>
             <li>Specified constraint on column 3 to be a sequence_alteration, one of it's children or gap.</li>
@@ -1570,7 +1570,7 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
             <li>Added links to the GVF wiki pages.</li>
         </ul>
     </dd>
-    <dt>1.02 Sat Jul 24 08:17:39 MDT 2010</dt>
+    <dt>1.02 Sat 24 Jul 2010</dt>
     <dd>
         <ul>
             <li>Updated format of Variant_effect tag and updated the examples to comply.</li>
@@ -1578,7 +1578,7 @@ The GVF Specification is maintained by [Barry Moore](mailto:barry.moore@genetics
             <li>Added link to the 10Gen Data set.</li>
         </ul>
     </dd>
-    <dt>1.01 Fri Mar 19 16:56:20 MDT 2010</dt>
+    <dt>1.01 Fri 19 Mar 2010</dt>
     <dd>
         <ul>
             <li>Added documentation to, and fixed inconsistencies with pragma examples.</li>
