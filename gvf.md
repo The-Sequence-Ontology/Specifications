@@ -35,8 +35,8 @@
 
 #### Summary
 
-*Version 1.10*  
-*19 May 2014*  
+*Version 1.10*
+*7 October 2016*
 
 The Genome Variation Format (GVF) is a very simple file format for describing sequence_alteration features at nucleotide resolution relative to a reference genome. The GVF format was published in *Reese et al., Genome Biol., 2010;11(8):R88* [A standard variation file format for human genome sequences](http://genomebiology.biomedcentral.com/articles/10.1186/gb-2010-11-8-r88). We would like to acknowledge the contributing groups for their support.
 
