@@ -720,13 +720,13 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
 #### Change Log
 
 <dl>
-    <dt>1.25 Tues 24 Sept 2019</dt>
+    <dt>1.25 Tue 24 Sep 2019</dt>
     <dd>
         <ul>
             <li>Added clarifications to CDS phase based on discussions with jbethune</li>
         </ul>
     </dd>
-    <dt>1.24 Mon 15 July 2019</dt>
+    <dt>1.24 Mon 15 Jul 2019</dt>
     <dd>
         <ul>
             <li>Added miRNA extension to the pathological cases.</li>
@@ -744,7 +744,7 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Converted from HTML to Markdown.</li>
         </ul>
     </dd>
-    <dt>1.21 Tue Feb 26 05:59:31 MST 2013</dt>
+    <dt>1.21 Tue 26 Feb 2013</dt>
     <dd>
         <ul>
             <li>Clarification of escaping conventions.</li>
@@ -755,32 +755,32 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Clarification to the ##sequence-region pragma.</li>
         </ul>
     </dd>
-    <dt>1.20 Wed Dec 15 12:35:10 MST 2010</dt>
+    <dt>1.20 Wed 15 Dec 2010</dt>
     <dd>
         <ul>
             <li>Added language to the description of the ID attribute to clarify that discontinuous features can exist on multiple lines and share the same ID.</li>
         </ul>
     </dd>
-    <dt>1.19 Tue Jul 6 12:51:26 MDT 2010</dt>
+    <dt>1.19 Tue 6 Jul 2010</dt>
     <dd>
         <ul>
             <li>Fixed coordinate errors in the EST_match and match_part examples in the 'Alignments' section.</li>
             <li>Constrained multiple attribute values to the Parent, Alias, Note, Dbxref and Ontology_term attributes.</li>
         </ul>
     </dd>
-    <dt>1.18 June 24 2010</dt>
+    <dt>1.18 Thu 24 Jun 2010</dt>
     <dd>
         <ul>
             <li>Added the sections regarding circular genomes to the spec.</li>
         </ul>
     </dd>
-    <dt>1.17 Wed June 2 2010</dt>
+    <dt>1.17 Wed 2 Jun 2010</dt>
     <dd>
         <ul>
             <li>Changed the spec to include Sequence Ontology (SO) sequence_feature terms in column 3 as well as SOFA terms. (SOFA is a subset of SO).</li>
         </ul>
     </dd>
-    <dt>1.16 Tue May 25 10:06:38 MDT 2010</dt>
+    <dt>1.16 Tue 25 May 2010</dt>
     <dd>
         <ul>
             <li>Fixed more incorrect CDS phases throughout.</li>
@@ -789,69 +789,69 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
             <li>Added ID attributes to CDS features (required for multiline features) in the FASTA pragma example.</li>
         </ul>
     </dd>
-    <dt>1.15 Mon Aug 31 12:59:26 EDT 2009</dt>
+    <dt>1.15 Mon 31 Aug 2009</dt>
     <dd>
         <ul>
             <li>Fixed incorrect CDS phases in the canonical gene example.</li>
         </ul>
     </dd>
-    <dt>1.14 Mon Aug 25 10:24:02 EDT 2008</dt>
+    <dt>1.14 Mon 25 Aug 2008</dt>
     <dd>
         <ul>
             <li>Add meta-directives for species and build number.</li>
         </ul>
     </dd>
-    <dt>1.13 Wed May 23 10:31:01 EDT 2007</dt>
+    <dt>1.13 Wed 23 May 2007</dt>
     <dd>
         <ul>
             <li>Insist that CDS include the start and end codon.</li>
         </ul>
     </dd>
-    <dt>1.12 Thu Apr 5 17:32:32 EDT 2007</dt>
+    <dt>1.12 Thu 5 Apr 2007</dt>
     <dd>
         <ul>
             <li>Use "match_part" as the subpart of cDNA_match in the paired EST example.</li>
             <li>Phase is required for all CDS features.</li>
         </ul>
     </dd>
-    <dt>1.11 Fri Dec 1 16:33:39 EST 2006</dt>
+    <dt>1.11 Fri 1 Dec 2006</dt>
     <dd>
         <ul>
             <li>Clarified definition of phase relative to reverse strand features.</li>
         </ul>
     </dd>
-    <dt>1.10 14 September 2006</dt>
+    <dt>1.10 Thu 14 Sep 2006</dt>
     <dd>
         <ul>
             <li>Reformatted for new SO web site.</li>
         </ul>
     </dd>
-    <dt>1.09 Wed Sep 6 17:55:32 EDT 2006</dt>
+    <dt>1.09 Wed 6 Sep 2006</dt>
     <dd>
         <ul>
             <li>Information about the GFF3 validator.</li>
         </ul>
     </dd>
-    <dt>1.08 Tue Jul 18 15:12:11 EDT 2006</dt>
+    <dt>1.08 Tue 18 Jul 2006</dt>
     <dd>
         <ul>
             <li>Added URLs for SO releases.</li>
         </ul>
     </dd>
-    <dt>1.07 Wed May 24 21:59:02 EDT 2006</dt>
+    <dt>1.07 Wed 24 May 2006</dt>
     <dd>
         <ul>
             <li>Fixed description of phase (temporarily lost due to CVS glitches).</li>
         </ul>
     </dd>
-    <dt>1.06 Wed May 24 11:44:22 EDT 2006</dt>
+    <dt>1.06 Wed 24 May 2006</dt>
     <dd>
         <ul>
             <li>Relaxed escaping rules.</li>
             <li>Fixed typos found by Gordon Gremme.</li>
         </ul>
     </dd>
-    <dt>1.05 Tue May 23 10:46:25 EDT 2006</dt>
+    <dt>1.05 Tue 23 May 2006</dt>
     <dd>
         <ul>
             <li>Fixed all IDs in the examples to make them internally consistent. Previously, some examples did not validate because of inconsistent numbers of zeroes in the identifiers (mRNA00001 vs mRNA0001).</li>
