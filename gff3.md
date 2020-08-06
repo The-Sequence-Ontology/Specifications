@@ -21,7 +21,7 @@ GFF3 validation tools are available at [modENCODE-DCC](https://github.com/modENC
 
 #### Description of the Format
 
-GFF3 files are nine-column, tab-delimited, plain text files. Literal use of tab, newline, carriage return, the percent (%) sign, and control characters must be encoded using [RFC 3986 Percent-Encoding](https://tools.ietf.org/html/rfc3986#section-2.1); no other characters may be encoded. Backslash and other ad-hoc escaping conventions that have been added to the GFF format are not allowed. The file contents may include any character in the set supported by the operating environment, although for portability with other systems, use of Latin-1 or UTF-8 is recommended.
+GFF3 files are nine-column, tab-delimited, plain text files. Literal use of tab, newline, carriage return, the percent (%) sign, and control characters must be encoded using [RFC 3986 Percent-Encoding](https://tools.ietf.org/html/rfc3986#section-2.1); no other characters may be encoded. Backslash and other ad-hoc escaping conventions that have been added to the GFF format are not allowed. The file contents may include any character in the set supported by the operating environment, although for portability with other systems, use of UTF-8 is recommended.
 
 -   tab (%09)
 -   newline (%0A)
