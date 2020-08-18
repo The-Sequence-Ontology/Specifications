@@ -723,7 +723,7 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
     <dt>1.25 Tue 24 Sep 2019</dt>
     <dd>
         <ul>
-            <li>Added clarifications to CDS phase based on discussions with jbethune</li>
+            <li>Added clarifications to CDS phase based on discussions with jbethune.</li>
         </ul>
     </dd>
     <dt>1.24 Mon 15 Jul 2019</dt>
