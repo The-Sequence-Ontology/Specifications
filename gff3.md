@@ -2,9 +2,9 @@
 
 #### Summary
 
-Author: Lincoln Stein  
-Date: 24 September 2019
-Version: 1.25  
+Author: Lincoln Stein<br/>
+Date: 18 August 2020<br/>
+Version: 1.26
 
 Although there are many richer ways of representing genomic features via XML and in relational database schemas, the stubborn persistence of a variety of ad-hoc tab-delimited flat file formats declares the bioinformatics community's need for a simple format that can be modified with a text editor and processed with shell tools like grep. The GFF format, although widely used, has fragmented into multiple incompatible dialects. When asked why they have modified the published Sanger specification, bioinformaticists frequently answer that the format was insufficient for their needs, and they needed to extend it. The proposed GFF3 format addresses the most common extensions to GFF, while preserving backward compatibility with previous formats. The new format:
 
@@ -109,7 +109,7 @@ There is also an identified transcriptional factor binding site located 50 bp up
 Here is how this gene should be described using GFF3:
 
 
-     0  ##gff-version 3.1.25
+     0  ##gff-version 3.1.26
      1  ##sequence-region ctg123 1 1497228
      2  ctg123 . gene            1000  9000  .  +  .  ID=gene00001;Name=EDEN
      3  ctg123 . TF_binding_site 1000  1012  .  +  .  ID=tfbs00001;Parent=gene00001
@@ -151,7 +151,7 @@ Lines 12-24 denote this gene's four CDSs. Each CDS belongs to one of the mRNAs. 
 
 Note that several of the features, including the gene, its mRNAs and the CDSs, all have Name attributes. This attributes assigns those features a public name, but is not mandatory. The ID attributes are only mandatory for those features that have children (the gene and mRNAs), or for those that span multiple lines. The IDs are not required to have meaning outside the file in which they reside. Hence, a slightly simplified version of this file would look like this:
 
-    ##gff-version 3.1.25
+    ##gff-version 3.1.26
     ##sequence-region ctg123 1 1497228
     ctg123 . gene            1000 9000  .  +  .  ID=gene00001;Name=EDEN
     ctg123 . TF_binding_site 1000 1012  .  +  .  Parent=gene00001
@@ -237,7 +237,7 @@ Note that several of the features, including the gene, its mRNAs and the CDSs, a
 
 For a circular genome, the landmark feature should include Is_circular=true in column 9. In the example below, from bacteriophage f1, gene II extends across the origin from positions 6477-831. The feature end is given as length of the landmark feature, J02448, plus the distance from the origin to the end of gene II (6407 + 831 = 7238).
 
-    ##gff-version 3.1.25
+    ##gff-version 3.1.26
     # organism Enterobacteria phage f1
     # Note Bacteriophage f1, complete genome.
     J02448  GenBank region  1      6407    .       +       .       ID=J02448;Name=J02448;Is_circular=true;
@@ -468,7 +468,7 @@ Here are some common examples:
 Comment lines begin with the '#' symbol. End-of-line comments (comments preceded by '#' at the end of and on the same line as a feature or directive line) are not allowed. Directive lines (sometimes referred to as pragmas or meta-data) are preceded by '##'. Application specific directives are allowed, but are not required to be supported by parsers. The following directives are specified:
 
 <dl>
-    <dt>##gff-version 3.1.25</dt>
+    <dt>##gff-version 3.1.26</dt>
     <dd>The GFF version follows the format of 3.#.# in this spec. This directive must be present, must be the topmost line of the file. The version number always begins with 3, the second and third numbers are optional and indicate a major revision and a minor revision respectively.</dd>
     <dt>##sequence-region seqid start end</dt>
     <dd>The sequence segment referred to by this file, in the format "seqid start end". This element is optional, but strongly encouraged because it allows parsers to perform bounds checking on features. There may be multiple ##sequence-region directives, each corresponding to one of the reference sequences referred to in the body of the file, however only one ##sequence-region directive may be given for any given seqid. While a ##sequence-region pragma is not required for any or all landmark features when one is given all features on that landmark feature (having that seqid) must be contained within the range defined by that ##sequence-region directive. An exception to this rule is allowed when a landmark feature is marked with the Is_circular attribute. In that case the features contained on that landmark may extend their coordinates beyond the boundary as described above.</dd>
@@ -532,7 +532,7 @@ Comment lines begin with the '#' symbol. End-of-line comments (comments preceded
         <p>This notation indicates that the annotation portion of the file is at an end and that the remainder of the file contains one or more sequences (nucleotide or protein) in FASTA format. This allows features and sequences to be bundled together. All FASTA sequences included in the file must be included together at the end of the file and may not be interspersed with the features lines. Once a ##FASTA section is encountered no other content beyond valid FASTA sequence is allowed.</p>
         <p>Example:</p>
         <pre>
-##gff-version 3.1.25
+##gff-version 3.1.26
 ##sequence-region ctg123 1 1497228
 ctg123 . gene               1000  9000  .  +  .  ID=gene00001;Name=EDEN
 ctg123 . TF_binding_site    1000  1012  .  +  .  ID=tfbs00001;Parent=gene00001
@@ -720,6 +720,16 @@ chrX  . CDS      XXXX YYYY  .  +  . Parent=tran01;Derives_from=gene04</pre>
 #### Change Log
 
 <dl>
+    <dt>1.26 Tue 18 Aug 2020</dt>
+    <dd>
+        <ul>
+            <li>More internal links (thanks to Juke34).</li>
+            <li>Switched to the actual GFF3 version number in examples.</li>
+            <li>Standardized date format in changelog.</li>
+            <li>Fixed typos (thanks to lbergelson) and formatting.</li>
+            <li>UTF-8 is now the only recommended character encoding.</li>
+        </ul>
+    </dd>
     <dt>1.25 Tue 24 Sep 2019</dt>
     <dd>
         <ul>
