@@ -251,7 +251,7 @@ For spliced non-coding transcripts, such as those produced by some processed snR
 
 The reserved Parent attribute can be used to establish a part-of relationship between two features. A feature that has the Parent attribute set is interpreted as asserting that it is a part of the specified Parent feature.
 
-Features must respect the Sequence Ontology Part-Of relationships. A Parent relationship between two features that is not one of the Part-Of relationships listed in SO should trigger a parse exception Similarly, a set of Parent relationships that would cause a cycle should also trigger an exception.
+Features must respect the Sequence Ontology Part-Of relationships. A Parent relationship between two features that is not one of the Part-Of relationships listed in SO should trigger a parse exception. Similarly, a set of Parent relationships that would cause a cycle should also trigger an exception.
 
 The GFF3 format does not enforce a rule in which features must be wholly contained within the location of their parents, since some elements of the Sequence Ontology (e.g. enhancers in genes) allow for distant cis relationships.
 
