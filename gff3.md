@@ -195,7 +195,7 @@ Note that several of the features, including the gene, its mRNAs and the CDSs, a
                 <td>SO:0000147</td>
             </tr>
             <tr>
-                <td>cds</td>
+                <td>CDS</td>
                 <td>SO:0000316</td>
             </tr>
         </table>
