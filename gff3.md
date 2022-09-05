@@ -73,7 +73,7 @@ Undefined fields are replaced with the "." character, as described in the origin
             <dt>Alias</dt>
             <dd>A secondary name for the feature. It is suggested that this tag be used whenever a secondary identifier for the feature is needed, such as locus names and accession numbers. Unlike ID, there is no requirement that Alias be unique within the file.</dd>
             <dt><a href="#parent-part_of-relationships">Parent</a></dt>
-            <dd>Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, an so forth. A feature may have multiple parents. Parent can <em>only</em> be used to indicate a partof relationship.</dd>
+            <dd>Indicates the parent of the feature. A parent ID can be used to group exons into transcripts, transcripts into genes, and so forth. A feature may have multiple parents. Parent can <em>only</em> be used to indicate a partof relationship.</dd>
             <dt>Target</dt>
             <dd>Indicates the target of a nucleotide-to-nucleotide or protein-to-nucleotide alignment. The format of the value is "target_id start end [strand]", where strand is optional and may be "+" or "-". If the target_id contains spaces, they must be escaped as hex escape %20.</dd>
             <dt><a href="#the-gap-attribute">Gap</a></dt>
