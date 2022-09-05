@@ -104,7 +104,7 @@ FIGURE 1
 
 This section describes the representation of a protein-coding gene in GFF3. To illustrate how a canonical gene is represented, consider Figure 1 (figure1.png). This indicates a gene named EDEN extending from position 1000 to position 9000. It encodes three alternatively-spliced transcripts named EDEN.1, EDEN.2 and EDEN.3, the last of which has two alternative translational start sites leading to the generation of two protein coding sequences.
 
-There is also an identified transcriptional factor binding site located 50 bp upstream from the transcriptional start site of EDEN.1 and EDEN2.
+There is also an identified transcriptional factor binding site located 50 bp upstream from the transcriptional start site of EDEN.1 and EDEN.2.
 
 Here is how this gene should be described using GFF3:
 
